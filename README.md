@@ -2,38 +2,36 @@
 
 This project demonstrates a cyclic "thinking" AI agent built using FastAPI, LangGraph, and LangChain's ChatOpenAI model (`gpt-4o-mini`). The agent fetches and sanitizes website content, generates a concise description, iteratively “thinks” to gather additional insights, and then provides a final multi-line business evaluation along with a rating.
 
----
+<table style="width: 100%; table-layout: fixed;">
+  <tr>
+    <td style="vertical-align: top; width: 50%; padding-right: 20px;">
+      <h3>🖼️ Graph Visualization</h3>
+      <p>This diagram shows how the cyclic agent operates, using LangGraph to manage the flow:</p>
+      <img src="visualize.png" alt="LangGraph Agent Visualization" style="width: 100%; border: 1px solid #ccc; border-radius: 8px;">
+    </td>
+    <td style="vertical-align: top; width: 50%; padding-left: 20px;">
+      <h3>🧠 How the Agent Works</h3>
+      <p><strong>1. Fetch & Sanitize Website Content</strong><br />
+      The agent retrieves raw HTML and cleans it using BeautifulSoup.</p>
+      <p><strong>2. Generate Descriptor</strong><br />
+      The model uses ChatOpenAI to summarize the website in a single sentence.</p>
 
-## 🔁 Agent Architecture
+      <p><strong>3. Decision Cycle</strong><br />
+      The agent loops through this process:</p>
 
-Below is a high-level diagram of how the cyclic agent works, visualized using LangGraph:
+      <ul>
+        <li>Checks if it has enough information</li>
+        <li>Generates additional insights if needed</li>
+        <li>Updates internal thoughts and market trends</li>
+        <li>Repeats (max 3 iterations)</li>
+      </ul>
 
-![LangGraph Agent Visualization](visualize.png)
+      <p><strong>4. Final Evaluation</strong><br />
+      Once confident, the agent provides a final summary and a numeric rating (1–10).</p>
+    </td>
 
----
-
-## 🧠 How the Agent Works
-
-1. **Fetch & Sanitize Website Content**  
-   The agent retrieves raw HTML and extracts readable text using BeautifulSoup.
-
-2. **Generate Descriptor**  
-   It creates a one-line summary of the site's content using `ChatOpenAI`.
-
-3. **Decision Cycle**  
-   The agent loops:
-
-   - Decides if it has enough info
-   - If not, thinks more and gathers insights
-   - Updates its internal thoughts and trends
-   - Loops again (max 3 iterations)
-
-4. **Final Evaluation**  
-   Once confident, the agent outputs:
-   - A final summary (3–5 lines)
-   - A business viability rating (1–10)
-
----
+  </tr>
+</table>
 
 ## 🗂️ Project Structure
 
@@ -46,8 +44,6 @@ ai-agent-demo/
 └── visualize.png      # Visualization of the LangGraph workflow.
 ```
 
----
-
 ## ⚙️ Environment Setup
 
 The `.env` file should contain your OpenAI API key:
@@ -57,8 +53,6 @@ OPENAI_API_KEY=your_openai_api_key_here
 ```
 
 Make sure not to commit this file to version control.
-
----
 
 ## 🚀 API Endpoints
 
@@ -96,8 +90,6 @@ Returns a PNG of the LangGraph agent flow:
 **Response:**  
 Image (`visualize.png`) of the current graph layout.
 
----
-
 ## 🛠️ Installation
 
 ```bash
@@ -108,8 +100,6 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 # Install dependencies
 pip install -r requirements.txt
 ```
-
----
 
 ## ▶️ Running the App
 
@@ -122,8 +112,6 @@ uvicorn main:app --reload
 Then open your browser at:  
 👉 http://localhost:8000/docs  
 to interact with the API.
-
----
 
 ## 📌 Notes
 
