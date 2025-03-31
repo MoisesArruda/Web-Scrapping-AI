@@ -15,17 +15,14 @@ This project demonstrates a cyclic "thinking" AI agent built using FastAPI, Lang
       The agent retrieves raw HTML and cleans it using BeautifulSoup.</p>
       <p><strong>2. Generate Descriptor</strong><br />
       The model uses ChatOpenAI to summarize the website in a single sentence.</p>
-
       <p><strong>3. Decision Cycle</strong><br />
       The agent loops through this process:</p>
-
       <ul>
         <li>Checks if it has enough information</li>
         <li>Generates additional insights if needed</li>
         <li>Updates internal thoughts and market trends</li>
         <li>Repeats (max 3 iterations)</li>
       </ul>
-
       <p><strong>4. Final Evaluation</strong><br />
       Once confident, the agent provides a final summary and a numeric rating (1–10).</p>
     </td>
