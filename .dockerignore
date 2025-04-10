@@ -1,0 +1,36 @@
+# Ignorar pasta data exceto a imagem do logo
+data/*
+!data/download.png
+README.md
+
+# Ignorar arquivos de desenvolvimento
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Ignorar arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos do Git
+.git
+.gitignore
+
+# Ignorar arquivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignorar arquivos de cache do Python
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/ 
