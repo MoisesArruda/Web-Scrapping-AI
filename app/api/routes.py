@@ -1,6 +1,8 @@
 from fastapi import APIRouter, HTTPException, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from app.backend.evaluator import StartupEvaluator
+import requests
 
 # Criar a aplicação FastAPI
 app = FastAPI(
@@ -12,6 +14,15 @@ app = FastAPI(
 # Criar o router
 router = APIRouter()
 evaluator = StartupEvaluator()
+
+# Configuração do CORS para permitir requisições do frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Em produção, especifique as origens permitidas
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @router.get("/")
 async def root():
@@ -31,6 +42,13 @@ async def root():
 class Query(BaseModel):
     url: str
 
+async def check_api_health(api_url):
+    try:
+        response = requests.get(f"{api_url}/health")
+        return response.status_code == 200
+    except requests.exceptions.RequestException:
+        return False
+
 @router.post("/evaluate")
 async def evaluate_agent(query: Query):
     """
@@ -41,6 +59,7 @@ async def evaluate_agent(query: Query):
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
     
 @router.get("/evaluate/{url:path}")
 async def evaluate_agent_path(url: str):
@@ -60,6 +79,7 @@ if __name__ == "__main__":
     import uvicorn
     print("Iniciando servidor na porta 8000...")
     print("Acesse a documentação em: http://localhost:8000/docs")
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000) 
 
+    # python -m app.api.routes
     # Colar no navegador: http://localhost:8000/evaluate/https://www.cleverdash.ai/
