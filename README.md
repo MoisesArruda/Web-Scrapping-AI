@@ -1,6 +1,7 @@
 # Frontend
 
 Consigo rodar a API, mas não estou conectando ela entre frontend e backend.
+Tenho apenas 1 container rodando
 
 
 1. buildar a imagem 
@@ -14,3 +15,4 @@ podman build -t frontend .
 ```bash 
 podman run -p 8501:8501 frontend
 ```
+
