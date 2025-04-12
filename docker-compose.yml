@@ -1,0 +1,31 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: . # Context é o dir que o docker-compose vai usar para construir a imagem, será a raiz de onde o Copy e ADD do DockerFile vão referenciar os arquivos
+      dockerfile: app/api/Dockerfile.backend
+    ports:
+      - "8000:8000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - PYTHONPATH=/app # PYTHONPATH é uma variável de ambiente que define o caminho padrão para os módulos Python, Como se fosse um "mapa"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
+
+
+# podman-compose build
+# podman-compose up
+# podman-compose down
+# podman-compose ps

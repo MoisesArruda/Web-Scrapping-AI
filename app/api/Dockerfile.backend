@@ -1,0 +1,27 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# Copiar requirements.txt primeiro para aproveitar o cache do Docker
+COPY requirements.txt .
+# Cada execução do docker cria uma nova camada, por isso é importante instalar as dependências primeiro antes de mudar a chamada
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar todo o conteúdo do projeto
+COPY .. .
+
+# Configurar PYTHONPATH
+ENV PYTHONPATH=/app
+
+# Expor a porta
+EXPOSE 8000
+
+# Comando para rodar a API
+CMD ["python", "-m", "app.api.routes"]
+
+
+# podman build -t backend -f app/api/Dockerfile.backend .
+# docker run -p 8000:8000 backend
+
+#  podman build -t frontend -f Dockerfile.frontend .
+# 

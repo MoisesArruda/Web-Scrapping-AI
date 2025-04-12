@@ -1,39 +1,22 @@
-# Como rodar
+# Como rodar Docker-Compsoe
 
-Essa solução está conectando a API Backend com o Frontend, para roda-la é necessário primeiramente ativar o módulo da API de back
+Essa solução está conectando a API Backend com o Frontend cada uma dentro do seu container
+
+Para rodar Podman-compose
 
 ```bash
-python -m app.api.routes
+podman-compose build
 ```
 
-Após, para iniciar o frontend, arrastar o script até a pasta raiz do projeto
+Após, para iniciar
 
 ```bash
-streamlit run frontend.py
+podman-compose up -d
 ```
 
-Rodar o main.py, não esquecer de retornar o frontend para a pasta dele
+E então, só acessar o localhost
 
 ```bash
-streamlit run main.py
-```
-
-## Container
-
-O CMD do dockerfile não permite rodar dois comandos, para isso criamos o arquivo **start.sh** com os comandos necessários para rodar
-
-```bash
-podman build -t api_frontend .
-```
-
-Para conseguir acessar o back e o front em http://localhost:8000 e http://localhost:8501
-
-```bash
-podman run -p 8000:8000 -p 8501:8501 api_frontend
-```
-
-Para acessar apenas o front
-
-```bash
-podman run -p 8501:8501 api_frontend
+localhost:8000
+localhost:8501
 ```

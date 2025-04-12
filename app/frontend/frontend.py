@@ -7,8 +7,8 @@ from app.api.routes import check_api_health
 USE_API = True  # Mude para True para usar a abordagem com API
 
 if USE_API:
-    api_url = "http://localhost:8000/evaluate" # Testes locais
-    # api_url = "http://backend:8000/evaluate" # URL da API usando o nome do serviço dentro do Docker Compose
+    # api_url = "http://localhost:8000/evaluate" # Testes locais
+    api_url = "http://backend:8000/evaluate" # URL da API usando o nome do serviço dentro do Docker Compose
 else:
     evaluator = StartupEvaluator()
     

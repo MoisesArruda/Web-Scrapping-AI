@@ -8,4 +8,3 @@ pydantic==2.11.2
 beautifulsoup4==4.13.3
 langchain-groq==0.2.1
 streamlit==1.32.0
-podman-compose==1.0.6

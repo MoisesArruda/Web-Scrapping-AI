@@ -1,0 +1,25 @@
+FROM python:3.9-slim
+
+# Define o diretório de trabalho, onde todos os comandos serão executados
+WORKDIR /app
+
+# Copia todos os arquivos da raiz para o diretório de trabalho
+# Primeiro .: origem (relativo ao context definido no docker-compose)
+# Segundo .: destino (relativo ao WORKDIR atual)
+COPY . .
+
+# Instala as dependências do projeto
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expõe as portas necessárias
+EXPOSE 8501
+
+# Comando para rodar o Streamlit
+CMD ["streamlit", "run", "main.py", "--server.address", "0.0.0.0", "--server.port", "8501"]
+
+# buildar a imagem 
+# podman build -t frontend -f Dockerfile.frontend .
+
+# rodar a imagem
+# podman run -p 8501:8501 frontend
+

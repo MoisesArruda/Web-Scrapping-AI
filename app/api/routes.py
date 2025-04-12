@@ -42,12 +42,20 @@ async def root():
 class Query(BaseModel):
     url: str
 
-async def check_api_health(api_url):
+def check_api_health(api_url):
     try:
         response = requests.get(f"{api_url}/health")
         return response.status_code == 200
     except requests.exceptions.RequestException:
         return False
+
+@app.get("/health")
+async def health_check():
+    """Verifica o status da API"""
+    return {
+        "status": "healthy",
+        "service": "avaliador-startups-api"
+    }
 
 @router.post("/evaluate")
 async def evaluate_agent(query: Query):
