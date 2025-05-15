@@ -18,7 +18,7 @@ else:
     evaluator = StartupEvaluator()
 
 # Interface
-st.title("🚀 Web Scraping AI - Avaliador de Startups")
+st.title("🚀 Web Scraping AI - Avaliador de Startups oficial da [AEficaz](https://aeficaz.com/)")
 st.write("Análise automatizada de startups por meio de suas páginas web usando IA")
 
 with st.form("evaluation_form"):
@@ -66,10 +66,11 @@ if submitted and url:
 st.markdown("---")
 st.markdown("### Sugestões de startups para teste:")
 st.markdown("""
-1. https://brintell.com.br/            
+1. https://www.gupshup.io/pt/
 2. https://www.cleverdash.ai/
 3. https://ia.adapta.org/
 4. https://lovable.dev/
 5. https://devin.ai/
 6. https://manus.im/
+7. https://www.nomadglobal.com/
 """)
