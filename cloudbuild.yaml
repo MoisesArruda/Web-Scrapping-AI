@@ -1,0 +1,24 @@
+images:
+  - 'gcr.io/$PROJECT_ID/scrap-test:latest'
+
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/scrap-test:latest', '.' ]
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'push', 'gcr.io/$PROJECT_ID/scrap-test:latest' ]
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'gcloud'
+  args:
+    [
+      'run', 'deploy', 'scrap-test',
+      '--image', 'gcr.io/$PROJECT_ID/scrap-test:latest',
+      '--region', 'us-central1',
+      '--platform', 'managed',
+      '--allow-unauthenticated',
+      '--set-env-vars', 'GROQ_API_KEY=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'
+      # SE PRECISAR ENVIAR MAIS VARIAVEIS DE AMBIENTE, adicione-as aqui separadas por vírgula, ex: 'VAR1=VAL1,VAR2=VAL2'
+      # Exemplo completo do comentário original, se você precisar reativar outras variáveis:
+      # '--set-env-vars', 'GROQ_API_KEY=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,GOOGLE_APPLICATION_CREDENTIALS=./blueshift-contactcenterai-4d438b303e45.json,LIVEKIT_URL=wss://renatoblue-xwi2g7ix.livekit.cloud,LIVEKIT_API_KEY=API4zYkNKTHY9TE,LIVEKIT_API_SECRET=oNfVIXSewRzi67h47P3hQCUmFflO5Rr1H5sXWqDG9SIA,GEMINI_MODEL=gemini-1.5-flash-001'
+    ]
