@@ -68,12 +68,13 @@ def frontend_app():
     st.markdown("---")
     st.markdown("### Sugestões de startups para teste:")
     st.markdown("""
-    1. https://brintell.com.br/            
-    2. https://www.cleverdash.ai/
-    3. https://ia.adapta.org/
-    4. https://lovable.dev/
-    5. https://devin.ai/
-    6. https://manus.im/
+1. https://www.gupshup.io/pt/
+2. https://www.cleverdash.ai/
+3. https://ia.adapta.org/
+4. https://lovable.dev/
+5. https://devin.ai/
+6. https://manus.im/
+7. https://www.nomadglobal.com/
     """)
 
 if __name__ == "__main__":
