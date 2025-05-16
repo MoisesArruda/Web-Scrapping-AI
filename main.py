@@ -20,7 +20,7 @@ def frontend_app():
     #     st.success("✅ Conectado à API")
 
     # Interface
-    st.title("🚀 Web Scraping AI - Avaliador de Startups")
+    st.title("🚀 Web Scraping AI - Avaliador de Startups oficial da [AEficaz](https://aeficaz.com/)")
     st.write("Análise automatizada de startups por meio de suas páginas web usando IA")
 
     with st.form("evaluation_form"):

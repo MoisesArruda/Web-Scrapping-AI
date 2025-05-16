@@ -1,8 +1,10 @@
 #!/usr/bin/env sh
+#!/usr/bin/env sh
 set -e
 
-echo "Baixando arquivos necessários..."
-python main.py download-files
+echo "Verificando variável de ambiente PORT..."
+PORT=${PORT:-8080}
+echo "Usando porta: $PORT"
 
 echo "Iniciando servidor FastAPI no uvicorn..."
-exec python -m uvicorn main:app --host 0.0.0.0 --port 8080 
+exec python -m uvicorn main:app --host 0.0.0.0 --port $PORT
